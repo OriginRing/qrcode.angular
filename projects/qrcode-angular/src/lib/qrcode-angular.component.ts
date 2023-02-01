@@ -2,37 +2,35 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
-  Input, OnChanges,
+  Input,
+  OnChanges,
   OnInit,
   SimpleChanges,
   ViewChild
 } from '@angular/core';
+
 import { drawCanvas, qrCode } from './qrcode';
 @Component({
   selector: 'qrcode',
   template: `
-      <canvas #canvas [width]="size" [height]="size"></canvas>
-      <img
-        *ngIf="!!icon"
-        [src]="icon"
-        [attr.key]="icon"
-        crossOrigin="anonymous"
-        [alt]="icon"
-      />
+    <canvas #canvas [width]="size" [height]="size"></canvas>
+    <img *ngIf="!!icon" [src]="icon" [attr.key]="icon" crossOrigin="anonymous" [alt]="icon" />
   `,
-  styles: [`
-    :host {
-      display: inline-block;
-    }
-    img {
-      display: none;
-    }
-  `]
+  styles: [
+    `
+      :host {
+        display: inline-block;
+      }
+      img {
+        display: none;
+      }
+    `
+  ]
 })
 export class QrcodeAngularComponent implements OnInit, OnChanges, AfterViewInit {
   @ViewChild('canvas', { static: false }) canvas!: ElementRef;
   @Input() value: string = '';
-  @Input() color: { dark: string, light: string } = { dark: '#000', light: '#fff' };
+  @Input() color: { dark: string; light: string } = { dark: '#000', light: '#fff' };
   @Input() size: number = 160;
   @Input() icon: string = '';
   @Input() iconSize: number = 40;
@@ -41,8 +39,7 @@ export class QrcodeAngularComponent implements OnInit, OnChanges, AfterViewInit 
 
   constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   ngOnChanges(changes: SimpleChanges): void {
     const { value, nzIcon, nzErrorLevel } = changes;
