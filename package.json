@@ -5,6 +5,14 @@
   "keywords": ["qrcode", "qrocde.anuglar", "ng-qrcode"],
   "license": "MIT",
   "description": "A Angular component to generate QR codes for rendering to the DOM.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/OriginRing/qrcode.angular"
+  },
+  "bugs": {
+    "url": "https://github.com/OriginRing/qrcode.angular/issues"
+  },
+  "homepage": "https://github.com/OriginRing/qrcode.angular",
   "scripts": {
     "ng": "ng",
     "start": "ng serve --port 4400",
