@@ -1,9 +1,42 @@
 :host {
   display: flex;
   flex-wrap: wrap;
+  flex-direction: column;
 
-  qrcode {
-    margin-right: 20px;
+  &>qrcode {
     margin-bottom: 20px;
+  }
+
+  ul, li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  ul {
+    display: flex;
+    width: 200px;
+    justify-content: space-between;
+
+    button {
+      padding: 2px 8px;
+      margin: 0;
+      border: 1px solid #ff6600;
+      outline: none;
+      background-color: transparent;
+    }
+
+    .active {
+      background-color: #1677ff;
+    }
+  }
+
+  #download {
+    width: max-content;
+    display: flex;
+    flex-direction: column;
+    qrcode, button {
+      margin-bottom: 4px;
+    }
   }
 }
