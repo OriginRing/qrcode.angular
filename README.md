@@ -4,6 +4,7 @@ A Angular component to generate QR codes for rendering to the DOM.
 
 ## Introduction
 
+Support canvas and svg two formats
 Support adding QR code logo
 
 ## Installation

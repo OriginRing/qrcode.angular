@@ -4,6 +4,7 @@ A Angular component to generate QR codes for rendering to the DOM.
 
 ## Introduction
 
+Support canvas and svg two formats
 Support adding QR code logo
 
 ## Installation
@@ -15,12 +16,12 @@ Support adding QR code logo
 ## Usage
 
 ```typescript
-  import { QrcodeModule } from 'qrcode-angular';
+import { QrcodeModule } from 'qrcode-angular';
 
-  <qrcode value="https://angular.io/"></qrcode>
-  <qrcode mode='svg' value="https://angular.io/"></qrcode>
-  <qrcode value="https://angular.io/" icon="imgUrl"></qrcode>
-  <qrcode value="https://angular.io/" errorLevel="H"></qrcode>
+<qrcode value="https://angular.io/"></qrcode>
+<qrcode mode='svg' value="https://angular.io/"></qrcode>
+<qrcode value="https://angular.io/" icon="imgUrl"></qrcode>
+<qrcode value="https://angular.io/" errorLevel="H"></qrcode>
 ```
 
 ## API
