@@ -1,6 +1,6 @@
 {
   "name": "qrcode-angular",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "author": "originRing",
   "keywords": ["qrcode", "qrocde.anuglar", "ng-qrcode"],
   "license": "MIT",
@@ -14,8 +14,8 @@
   },
   "homepage": "https://github.com/OriginRing/qrcode.angular",
   "peerDependencies": {
-    "@angular/common": "^15.0.0",
-    "@angular/core": "^15.0.0"
+    "@angular/common": ">=14",
+    "@angular/core": ">=14"
   },
   "dependencies": {
     "tslib": "^2.3.0"
