@@ -10,7 +10,7 @@ Support adding QR code logo
 ## Installation
 
 ```shell
-##
+npm i qrcode-angular
 ```
 
 ## Usage
@@ -35,3 +35,7 @@ import { QrcodeModule } from 'qrcode-angular';
 | `icon`       | `string`                          | -                                 | QR code include logo url  |
 | `iconSize`   | `number`                          | `40`                              | QR code include logo size |
 | `errorLevel` | `'L'｜'M'｜'Q'｜'H'`              | `H`                               | Error Code Level          |
+
+## Notice
+
+qrcode-angular bundles the [qrcodegen](https://github.com/nayuki/QR-Code-generator/blob/942f4319a6ba913dbc6775d8e665ccf18f401d83/typescript-javascript/qrcodegen.ts), which is available under the [MIT license](https://github.com/nayuki/QR-Code-generator/blob/942f4319a6ba913dbc6775d8e665ccf18f401d83/typescript-javascript/qrcodegen.ts).
