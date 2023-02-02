@@ -1,9 +1,13 @@
 {
   "name": "qrcode-angular",
-  "version": "1.0.0-beta.0",
+  "version": "1.0.0-beta.3",
+  "author": "originRing",
+  "keywords": ["qrcode", "qrocde.anuglar", "ng-qrcode"],
+  "license": "MIT",
+  "description": "A Angular component to generate QR codes for rendering to the DOM.",
   "peerDependencies": {
-    "@angular/common": "^14.2.0",
-    "@angular/core": "^14.2.0"
+    "@angular/common": "^15.0.0",
+    "@angular/core": "^15.0.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"
