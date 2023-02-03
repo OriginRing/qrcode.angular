@@ -1,20 +1,20 @@
 <h1>basic</h1>
 <p>Canvas</p>
-<qrcode value="https://angular.io/"></qrcode>
+<qrcode [value]="value"></qrcode>
 <p>SVG</p>
-<qrcode mode="svg" value="https://angular.io/"></qrcode>
+<qrcode mode="svg" [value]="value"></qrcode>
 
 <h1>logo</h1>
 <p>Canvas</p>
-<qrcode value="https://angular.io/" icon="./../assets/angular.svg"></qrcode>
+<qrcode [value]="value" [icon]="icon"></qrcode>
 <p>SVG</p>
-<qrcode mode="svg" value="https://angular.io/" icon="./../assets/angular.svg"></qrcode>
+<qrcode mode="svg" [value]="value" [icon]="icon"></qrcode>
 
 <h1>color</h1>
 <p>Canvas</p>
-<qrcode value="https://angular.io/" [color]="color"></qrcode>
+<qrcode [value]="value" [color]="color"></qrcode>
 <p>SVG</p>
-<qrcode mode="svg" value="https://angular.io/" [color]="color1"></qrcode>
+<qrcode mode="svg" [value]="value" [color]="color1"></qrcode>
 
 <h1>errorLevel</h1>
 <ul>
@@ -29,39 +29,17 @@
 
 <h1>size</h1>
 <p>Canvas</p>
-<qrcode value="https://angular.io/" [size]="300"></qrcode>
-<qrcode
-  value="https://angular.io/"
-  [size]="300"
-  [iconSize]="80"
-  icon="./../assets/angular.svg"
-></qrcode>
+<qrcode [value]="value" [size]="300"></qrcode>
+<qrcode [value]="value" [size]="300" [iconSize]="80" [icon]="icon"></qrcode>
 <p>SVG</p>
-<qrcode mode="svg" value="https://angular.io/" [size]="300"></qrcode>
-<qrcode
-  mode="svg"
-  value="https://angular.io/"
-  [size]="300"
-  [iconSize]="80"
-  icon="./../assets/angular.svg"
-></qrcode>
+<qrcode mode="svg" [value]="value" [size]="300"></qrcode>
+<qrcode mode="svg" [value]="value" [size]="300" [iconSize]="80" [icon]="icon"></qrcode>
 
 <h1>download</h1>
 <div id="download">
-  <qrcode value="https://angular.io/"></qrcode>
-  <qrcode mode="svg" value="https://angular.io/"></qrcode>
+  <qrcode [value]="value"></qrcode>
+  <qrcode mode="svg" [value]="value"></qrcode>
   <a #download></a>
   <button (click)="downloadQRCode()">Download Canvas</button>
   <button (click)="downloadQRCode(false)">Download SVG</button>
 </div>
-
-<!--<app-qrcode-test [value]="value" errorLevel="Q"></app-qrcode-test>-->
-<!--<app-qrcode-test mode="svg" [value]="value" errorLevel="Q"></app-qrcode-test>-->
-
-<!--<app-qrcode-test [value]="value" errorLevel="Q" icon="./../assets/angular.svg"></app-qrcode-test>-->
-<!--<app-qrcode-test-->
-<!--  mode="svg"-->
-<!--  [value]="value"-->
-<!--  errorLevel="Q"-->
-<!--  icon="./../assets/angular.svg"-->
-<!--&gt;</app-qrcode-test>-->

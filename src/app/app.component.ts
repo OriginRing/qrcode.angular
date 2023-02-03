@@ -7,8 +7,8 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 })
 export class AppComponent {
   @ViewChild('download', { static: false }) download!: ElementRef;
-  value =
-    'Angular is an application-design framework and development platform for creating efficient and sophisticated single-page apps.';
+  value = 'https://github.com/OriginRing/qrcode.angular';
+  icon = './../assets/image/patrick.jpg';
   color = { dark: '#ff6600', light: '#f6f6f6' };
   color1 = { dark: '#1677ff', light: '#f6f6f6' };
   level: Array<'L' | 'M' | 'Q' | 'H'> = ['L', 'M', 'Q', 'H'];
