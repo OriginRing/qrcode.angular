@@ -10,7 +10,7 @@ import {
   ViewChild
 } from '@angular/core';
 
-import { drawCanvas, plotQrCodeData, toSvgString } from './qrcode';
+import { drawCanvas, ERROR_LEVEL_MAP, plotQrCodeData, toSvgString } from './qrcode';
 @Component({
   selector: 'qrcode',
   template: `
@@ -30,7 +30,7 @@ import { drawCanvas, plotQrCodeData, toSvgString } from './qrcode';
           <path [attr.fill]="color.light" [attr.d]="d" shape-rendering="crispEdges" />
           <path [attr.d]="path" [attr.fill]="color.dark" shape-rendering="crispEdges" />
           <svg
-            *ngIf="!!icon"
+            *ngIf="!!icon && svgImg"
             [attr.viewBox]="iconViewBox"
             [attr.x]="iconX"
             [attr.y]="iconX"
@@ -54,6 +54,9 @@ import { drawCanvas, plotQrCodeData, toSvgString } from './qrcode';
       :host {
         display: inline-block;
       }
+      canvas {
+        display: block;
+      }
       img {
         display: none;
       }
@@ -61,14 +64,16 @@ import { drawCanvas, plotQrCodeData, toSvgString } from './qrcode';
   ]
 })
 export class QrcodeComponent implements OnInit, OnChanges, AfterViewInit {
-  @ViewChild('canvas', { static: false }) canvas!: ElementRef;
+  @ViewChild('canvas', { static: false }) canvas!: ElementRef<HTMLCanvasElement>;
   @Input() mode: 'canvas' | 'svg' = 'canvas';
   @Input() value: string = '';
   @Input() color: { dark: string; light: string } = { dark: '#000', light: '#fff' };
   @Input() size: number = 160;
   @Input() icon: string = '';
   @Input() iconSize: number = 40;
-  @Input() errorLevel: 'L' | 'M' | 'Q' | 'H' = 'M';
+  @Input() errorLevel: keyof typeof ERROR_LEVEL_MAP = 'M';
+
+  svgImg: boolean = true;
 
   path: string | null = null;
   viewBox: string | null = null;
@@ -82,8 +87,8 @@ export class QrcodeComponent implements OnInit, OnChanges, AfterViewInit {
   ngOnInit(): void {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    const { mode, value, icon, errorLevel } = changes;
-    if (mode || value || icon || errorLevel) {
+    const { mode, value, color, icon, errorLevel } = changes;
+    if (mode || value || color || icon || errorLevel) {
       switch (this.mode) {
         case 'canvas':
           if (this.canvas) this.drawCanvasQRCode();
@@ -107,6 +112,22 @@ export class QrcodeComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   drawSvgQrCode(): void {
+    if (!this.icon) {
+      this.drawSvgQrCodeFilling();
+    } else {
+      const iconImg = new Image();
+      iconImg.src = this.icon;
+      iconImg.crossOrigin = 'anonymous';
+      iconImg.onload = () => this.drawSvgQrCodeFilling();
+      iconImg.onerror = () => {
+        this.svgImg = false;
+        this.drawSvgQrCodeFilling();
+        this.cdr.markForCheck();
+      };
+    }
+  }
+
+  drawSvgQrCodeFilling(): void {
     const svg = toSvgString(plotQrCodeData(this.value, this.errorLevel));
     this.path = svg.parts.join(' ');
     this.viewBox = `0 0 ${svg.size} ${svg.size}`;
@@ -118,12 +139,8 @@ export class QrcodeComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   drawCanvasQRCode(): void {
-    if (!this.value) {
-      return;
-    }
-
     drawCanvas(
-      this.canvas,
+      this.canvas.nativeElement,
       plotQrCodeData(this.value, this.errorLevel),
       this.size,
       20,
