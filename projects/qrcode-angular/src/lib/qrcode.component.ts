@@ -1,11 +1,14 @@
+import { isPlatformBrowser } from '@angular/common';
 import {
   AfterViewInit,
   ChangeDetectorRef,
   Component,
   ElementRef,
+  Inject,
   Input,
   OnChanges,
   OnInit,
+  PLATFORM_ID,
   SimpleChanges,
   ViewChild
 } from '@angular/core';
@@ -44,8 +47,9 @@ import { drawCanvas, ERROR_LEVEL_MAP, plotQrCodeData, toSvgString } from './qrco
         </svg>
       </ng-container>
       <ng-container *ngSwitchDefault>
-        <canvas #canvas></canvas>
-        <img *ngIf="!!icon" [src]="icon" [attr.key]="icon" crossOrigin="anonymous" [alt]="icon" />
+        <ng-container *ngIf="isBrowser">
+          <canvas #canvas></canvas>
+        </ng-container>
       </ng-container>
     </ng-container>
   `,
@@ -56,9 +60,6 @@ import { drawCanvas, ERROR_LEVEL_MAP, plotQrCodeData, toSvgString } from './qrco
       }
       canvas {
         display: block;
-      }
-      img {
-        display: none;
       }
     `
   ]
@@ -82,7 +83,14 @@ export class QrcodeComponent implements OnInit, OnChanges, AfterViewInit {
   iconD: string | null = null;
   iconX: string = '0px';
 
-  constructor(private cdr: ChangeDetectorRef) {}
+  // https://github.com/angular/universal-starter/issues/538#issuecomment-365518693
+  // canvas is not supported by the SSR DOM
+  isBrowser = true;
+
+  constructor(@Inject(PLATFORM_ID) private platformId: Object, private cdr: ChangeDetectorRef) {
+    this.isBrowser = isPlatformBrowser(this.platformId);
+    this.cdr.markForCheck();
+  }
 
   ngOnInit(): void {}
 
@@ -139,15 +147,17 @@ export class QrcodeComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   drawCanvasQRCode(): void {
-    drawCanvas(
-      this.canvas.nativeElement,
-      plotQrCodeData(this.value, this.errorLevel),
-      this.size,
-      20,
-      this.color.light,
-      this.color.dark,
-      this.iconSize,
-      this.icon
-    );
+    if (this.canvas) {
+      drawCanvas(
+        this.canvas.nativeElement,
+        plotQrCodeData(this.value, this.errorLevel),
+        this.size,
+        20,
+        this.color.light,
+        this.color.dark,
+        this.iconSize,
+        this.icon
+      );
+    }
   }
 }
