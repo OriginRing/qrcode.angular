@@ -18,9 +18,11 @@
 
 <h1>errorLevel</h1>
 <ul>
-  <li *ngFor="let lev of level">
+  @for(lev of level; track lev) {
+  <li>
     <button [class.active]="lev === errorLevel" (click)="changeLevel(lev)">{{ lev }}</button>
   </li>
+  }
 </ul>
 <p>Canvas</p>
 <qrcode [value]="value" [errorLevel]="errorLevel"></qrcode>
