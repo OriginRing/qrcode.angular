@@ -18,7 +18,6 @@ module.exports = {
         'plugin:prettier/recommended'
       ],
       rules: {
-        'jsdoc/newline-after-description': 1,
         '@angular-eslint/no-host-metadata-property': 'off',
         '@angular-eslint/no-empty-lifecycle-method': 'off',
         '@typescript-eslint/no-explicit-any': 'off',

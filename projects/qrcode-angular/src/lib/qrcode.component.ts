@@ -1,4 +1,4 @@
-import { isPlatformBrowser } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import {
   AfterViewInit,
   ChangeDetectorRef,
@@ -14,8 +14,11 @@ import {
 } from '@angular/core';
 
 import { drawCanvas, ERROR_LEVEL_MAP, plotQrCodeData, toSvgString } from './qrcode';
+
 @Component({
   selector: 'qrcode',
+  standalone: true,
+  imports: [CommonModule],
   template: `
     <ng-container [ngSwitch]="mode">
       <ng-container *ngSwitchCase="'svg'">
@@ -87,7 +90,10 @@ export class QrcodeComponent implements OnInit, OnChanges, AfterViewInit {
   // canvas is not supported by the SSR DOM
   isBrowser = true;
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object, private cdr: ChangeDetectorRef) {
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private cdr: ChangeDetectorRef
+  ) {
     this.isBrowser = isPlatformBrowser(this.platformId);
     this.cdr.markForCheck();
   }

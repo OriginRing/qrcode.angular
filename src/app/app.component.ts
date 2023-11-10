@@ -1,9 +1,13 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 
+import { QrcodeComponent } from 'qrcode-angular';
+
 @Component({
   selector: 'app-root',
+  standalone: true,
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.less']
+  styleUrls: ['./app.component.less'],
+  imports: [QrcodeComponent]
 })
 export class AppComponent {
   @ViewChild('download', { static: false }) download!: ElementRef;
