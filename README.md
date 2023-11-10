@@ -10,7 +10,7 @@ Support canvas and svg two formats
 
 Support adding QR code logo
 
-Angular version >= 17 [![npm package](https://img.shields.io/badge/npm-latest%20version-%231890ff)](https://www.npmjs.com/package/ng-antd-color-picker)
+Angular version >= 17 [![npm package](https://img.shields.io/badge/npm-latest%20version-%231890ff)](https://www.npmjs.com/package/qrcode-angular)
 
 17 > Angular version >= 14 (npm 1.2.0)
 
